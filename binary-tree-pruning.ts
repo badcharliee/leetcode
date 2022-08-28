@@ -16,44 +16,24 @@ function pruneTree(root: TreeNode | null): TreeNode | null {
     return getMax(root) ? root : null
 };
 
-function getMax(root: TreeNode | null): number {    
-    if (!root.left && !root.right) {
-        return root.val
+function getMax(root: TreeNode | null): number {
+    if (!root) {
+        return 0
     }
     
-    if (root.left && root.right) {
-        const leftMax = getMax(root.left)
-        const rightMax = getMax(root.right)
-        
-        if (!leftMax) {
-            root.left = null
-        }
-        
-        if (!rightMax) {
-            root.right = null
-        }
-        
-        return Math.max(
-            root.val, 
-            Math.max(leftMax, rightMax)
-        )
+    const leftMax = getMax(root.left)
+    const rightMax = getMax(root.right)
+
+    if (!leftMax) {
+        root.left = null
     }
-    
-    if (root.left) {
-        const max = getMax(root.left)
-        if (!max) {
-            root.left = null
-        }
-        
-        return Math.max(root.val, max)
+
+    if (!rightMax) {
+        root.right = null
     }
-    
-    if (root.right) {
-        const max = getMax(root.right)
-        if (!max) {
-            root.right = null
-        }
-        
-        return Math.max(root.val, max)
-    }
+
+    return Math.max(
+        root.val, 
+        Math.max(leftMax, rightMax)
+    )    
 }
