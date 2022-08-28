@@ -16,11 +16,7 @@ function pruneTree(root: TreeNode | null): TreeNode | null {
     return getMax(root) ? root : null
 };
 
-function getMax(root: TreeNode | null): number {
-    if (!root) {
-        return 0    
-    }
-    
+function getMax(root: TreeNode | null): number {    
     if (!root.left && !root.right) {
         return root.val
     }
